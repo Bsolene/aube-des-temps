@@ -26,3 +26,1495 @@ Migrating to DeviseCreateUsers (20171004083806)
   [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
   [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(410232082010471595)[0m
   [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(410232082010471595)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateHouses (20171004091200)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (19.2ms)[0m  [1m[35mCREATE TABLE "houses" ("id" bigserial primary key, "name" character varying, "price" integer, "description" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20171004091200"]]
+  [1m[35m (39.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateReservations (20171004092848)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.2ms)[0m  [1m[35mCREATE TABLE "reservations" ("id" bigserial primary key, "house_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_d6abead145"
+FOREIGN KEY ("house_id")
+  REFERENCES "houses" ("id")
+)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX  "index_reservations_on_house_id" ON "reservations"  ("house_id")[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20171004092848"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(410232082010471595)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(410232082010471595)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateReservations (20171004092848)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.0ms)[0m  [1m[35mDROP TABLE "reservations"[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20171004092848"]]
+  [1m[35m (7.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(410232082010471595)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(410232082010471595)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateReservations (20171004092848)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE TABLE "reservations" ("id" bigserial primary key, "house_id" bigint, "user_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_d6abead145"
+FOREIGN KEY ("house_id")
+  REFERENCES "houses" ("id")
+, CONSTRAINT "fk_rails_48a92fce51"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX  "index_reservations_on_house_id" ON "reservations"  ("house_id")[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE  INDEX  "index_reservations_on_user_id" ON "reservations"  ("user_id")[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20171004092848"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(410232082010471595)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(410232082010471595)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateReservations (20171004092848)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.3ms)[0m  [1m[35mDROP TABLE "reservations"[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20171004092848"]]
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(410232082010471595)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(410232082010471595)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateReservations (20171004092848)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.3ms)[0m  [1m[35mCREATE TABLE "reservations" ("id" bigserial primary key, "house_id" bigint, "user_id" bigint, "check_in" date NOT NULL, "check_out" date NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_d6abead145"
+FOREIGN KEY ("house_id")
+  REFERENCES "houses" ("id")
+, CONSTRAINT "fk_rails_48a92fce51"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX  "index_reservations_on_house_id" ON "reservations"  ("house_id")[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX  "index_reservations_on_user_id" ON "reservations"  ("user_id")[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20171004092848"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(410232082010471595)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(410232082010471595)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateReservations (20171004092848)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.5ms)[0m  [1m[35mDROP TABLE "reservations"[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20171004092848"]]
+  [1m[35m (39.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(410232082010471595)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(410232082010471595)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateHouses (20171004091200)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.1ms)[0m  [1m[35mDROP TABLE "houses"[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20171004091200"]]
+  [1m[35m (4.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(410232082010471595)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(410232082010471595)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateHouses (20171004091200)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE TABLE "houses" ("id" bigserial primary key, "name" character varying, "price" integer, "epis" integer, "description" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20171004091200"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateReservations (20171004092848)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.0ms)[0m  [1m[35mCREATE TABLE "reservations" ("id" bigserial primary key, "house_id" bigint, "user_id" bigint, "check_in" date NOT NULL, "check_out" date NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_d6abead145"
+FOREIGN KEY ("house_id")
+  REFERENCES "houses" ("id")
+, CONSTRAINT "fk_rails_48a92fce51"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE  INDEX  "index_reservations_on_house_id" ON "reservations"  ("house_id")[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE  INDEX  "index_reservations_on_user_id" ON "reservations"  ("user_id")[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20171004092848"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(410232082010471595)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (11.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mHouse Load (2.3ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (3.1ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "La Bouteillan;4;Dйcouvrez ce magnifique appartement а l’ambiance zen et rйsolument contemporaine"], ["epis", 0], ["created_at", "2017-10-04 11:15:02.290012"], ["updated_at", "2017-10-04 11:15:02.290012"]]
+  [1m[35m (124.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "    D’une superficie de 100 mІ"], ["epis", 0], ["description", " d’un grand salon"], ["created_at", "2017-10-04 11:15:02.419802"], ["updated_at", "2017-10-04 11:15:02.419802"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "    Vous serez sйduits par la terrasse invitant а la dйtente"], ["epis", 0], ["description", " le vignoble"], ["created_at", "2017-10-04 11:15:02.421726"], ["updated_at", "2017-10-04 11:15:02.421726"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "    Vous disposerez d’un accиs privilйgiй direct а la salle de dйtente et de sport"], ["epis", 0], ["description", " piscine intйrieure"], ["created_at", "2017-10-04 11:15:02.423412"], ["updated_at", "2017-10-04 11:15:02.423412"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "    Il est"], ["epis", 0], ["description", " sur rйservation de bйnйficier de services de modelage dans une salle privative а l’ambiance cosy."], ["created_at", "2017-10-04 11:15:02.425036"], ["updated_at", "2017-10-04 11:15:02.425036"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "La Lucque;3;Bвti sur un ancien prieurй"], ["epis", 0], ["created_at", "2017-10-04 11:15:02.426521"], ["updated_at", "2017-10-04 11:15:02.426521"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "  En entrant"], ["epis", 0], ["created_at", "2017-10-04 11:15:02.428113"], ["updated_at", "2017-10-04 11:15:02.428113"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "  En passant  par cette chambre"], ["epis", 0], ["created_at", "2017-10-04 11:15:02.429810"], ["updated_at", "2017-10-04 11:15:02.429810"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "  La troisiиme chambre"], ["epis", 0], ["description", " offre une vue sur la terrasse et la piscine extйrieure."], ["created_at", "2017-10-04 11:15:02.431469"], ["updated_at", "2017-10-04 11:15:02.431469"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "  La piиce principale donne une ambiance ancienne revisitйe aux couleurs cosy !!"], ["created_at", "2017-10-04 11:15:02.433076"], ["updated_at", "2017-10-04 11:15:02.433076"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "  Vous aurez le privilиge d’accйder а une terrasse йquipй d’un barbecue invitant а l’apйritif"], ["epis", 0], ["created_at", "2017-10-04 11:15:02.434523"], ["updated_at", "2017-10-04 11:15:02.434523"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "  Ce gоte donne accиs  directement  а la piscine extйrieure vous permettant de profiter  immйdiatement de tous les йquipements mis а votre disposition."], ["created_at", "2017-10-04 11:15:02.436067"], ["updated_at", "2017-10-04 11:15:02.436067"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "  La proximitй de la riviиre est un appel  pour les amateurs de pкche (carte de pкche pour l’Aude en vente sur internet ou dans les magasins spйcialisйs)."], ["created_at", "2017-10-04 11:15:02.437658"], ["updated_at", "2017-10-04 11:15:02.437658"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "La Manzanille;3;Un subtil mйlange d’ancien et de contemporain"], ["epis", 0], ["created_at", "2017-10-04 11:15:02.439214"], ["updated_at", "2017-10-04 11:15:02.439214"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "    La grande piиce spacieuse vous accueillera par un coin salon confortable. Vous partagerez vos repas dans la grande cuisine entiиrement йquipй."], ["created_at", "2017-10-04 11:15:02.440817"], ["updated_at", "2017-10-04 11:15:02.440817"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "    Le gоte est composй de trois chambres dont une dйdiйe aux enfants avec ses deux lits ainsi qu’un lit pour bйbй."], ["created_at", "2017-10-04 11:15:02.442303"], ["updated_at", "2017-10-04 11:15:02.442303"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "    Une salle bain йquipйe d’une baignoire."], ["created_at", "2017-10-04 11:15:02.443887"], ["updated_at", "2017-10-04 11:15:02.443887"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "    Sur le mкme palier"], ["epis", 0], ["description", " vous accueillera pour vos apйritifs et repas. Vous apprйcierez la vue imprenable sur la riviиre l’Aude ainsi que la piscine extйrieure donnant а cet espace une ambiance reposante."], ["created_at", "2017-10-04 11:15:02.445583"], ["updated_at", "2017-10-04 11:15:02.445583"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "La Picholine;2;Dans un ancien logement de vigneron"], ["epis", 0], ["created_at", "2017-10-04 11:15:02.447288"], ["updated_at", "2017-10-04 11:15:02.447288"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Une piиce principale vous accueillera"], ["epis", 0], ["description", " et une cuisine amйricaine entiиrement йquipйe pour vos repas."], ["created_at", "2017-10-04 11:15:02.448865"], ["updated_at", "2017-10-04 11:15:02.448865"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Vous trouverez йgalement une chambre йquipйe d’un grand lit et un coin nuit avec un lit en 90."], ["created_at", "2017-10-04 11:15:02.450454"], ["updated_at", "2017-10-04 11:15:02.450454"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Pour vous faciliter la vie"], ["epis", 0], ["description", " four micro-ondes"], ["created_at", "2017-10-04 11:15:02.452106"], ["updated_at", "2017-10-04 11:15:02.452106"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "A l’extйrieur"], ["epis", 0], ["description", " vous donneront l’ambiance de vacances et de dйtente."], ["created_at", "2017-10-04 11:15:02.454425"], ["updated_at", "2017-10-04 11:15:02.454425"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Les Oliviers;3;Dans un ancien logement de vigneron"], ["epis", 0], ["created_at", "2017-10-04 11:15:02.457049"], ["updated_at", "2017-10-04 11:15:02.457049"]]
+  [1m[35m (5.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "    Une piиce principale vous accueillera"], ["epis", 0], ["description", " et une cuisine amйricaine entiиrement йquipйe pour vos repas."], ["created_at", "2017-10-04 11:15:02.464429"], ["updated_at", "2017-10-04 11:15:02.464429"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "    Vous trouverez йgalement une chambre йquipйe d’un grand lit et un coin nuit avec un lit en 90."], ["created_at", "2017-10-04 11:15:02.466403"], ["updated_at", "2017-10-04 11:15:02.466403"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "    Pour vous faciliter la vie"], ["epis", 0], ["description", " four micro-ondes"], ["created_at", "2017-10-04 11:15:02.468245"], ["updated_at", "2017-10-04 11:15:02.468245"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "    A l’extйrieur"], ["epis", 0], ["description", " vous donneront l’ambiance de vacances et de dйtente."], ["created_at", "2017-10-04 11:15:02.469952"], ["updated_at", "2017-10-04 11:15:02.469952"]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Les Vignes;3;Dans un ancien logement de vigneron"], ["epis", 0], ["created_at", "2017-10-04 11:15:02.471563"], ["updated_at", "2017-10-04 11:15:02.471563"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "  Une piиce principale vous accueillera"], ["epis", 0], ["description", " et une cuisine amйricaine entiиrement йquipйe pour vos repas."], ["created_at", "2017-10-04 11:15:02.473360"], ["updated_at", "2017-10-04 11:15:02.473360"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "  A l’йtage se trouve le coin nuit la premiиre chambre йquipйs de 3 petits lits dont 2 peuvent кtre rapprochйs. Du balcon"], ["epis", 0], ["created_at", "2017-10-04 11:15:02.475145"], ["updated_at", "2017-10-04 11:15:02.475145"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "  A l’extйrieur"], ["epis", 0], ["description", " vous donneront l’ambiance de vacances et de dйtente."], ["created_at", "2017-10-04 11:15:02.483235"], ["updated_at", "2017-10-04 11:15:02.483235"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "  Vous aurez alors la possibilitй de vous prйlasser sur les bains de soleil dans le jardin clos engazonnй."], ["created_at", "2017-10-04 11:15:02.487614"], ["updated_at", "2017-10-04 11:15:02.487614"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "  Ce gоte donne le privilиge d’accйder par le jardin clos"], ["epis", 0], ["created_at", "2017-10-04 11:15:02.489302"], ["updated_at", "2017-10-04 11:15:02.489302"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "  Vous apprйcierez la vue sur le vignoble et regarderez le soleil se coucher"], ["epis", 0], ["created_at", "2017-10-04 11:15:02.490872"], ["updated_at", "2017-10-04 11:15:02.490872"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Le Loft;4;Dйcouvrez ce magnifique Loft а l’ambiance zen et rйsolument contemporaine"], ["epis", 0], ["created_at", "2017-10-04 11:15:02.492585"], ["updated_at", "2017-10-04 11:15:02.492585"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "  D’une superficie de 200 mІ"], ["epis", 0], ["description", " d’un grand salon"], ["created_at", "2017-10-04 11:15:02.494304"], ["updated_at", "2017-10-04 11:15:02.494304"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "  Vous serez sйduits par la spacieuse terrasse invitant а la dйtente avec son jacuzzi"], ["epis", 0], ["description", " sa cuisine d’йtй йquipйe d’un four а pain et d’un barbecue moderne. A vos pieds"], ["created_at", "2017-10-04 11:15:02.495946"], ["updated_at", "2017-10-04 11:15:02.495946"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "  Une deuxiиme chambre disposant de deux lit en 140"], ["epis", 0], ["description", " accueillera vos invitйs ou enfants."], ["created_at", "2017-10-04 11:15:02.498129"], ["updated_at", "2017-10-04 11:15:02.498129"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "  Vous disposerez d’un accиs privilйgiй direct а la salle de dйtente et de sport"], ["epis", 0], ["description", " piscine intйrieure"], ["created_at", "2017-10-04 11:15:02.501174"], ["updated_at", "2017-10-04 11:15:02.501174"]]
+  [1m[35m (3.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "  Il est"], ["epis", 0], ["description", " sur rйservation de bйnйficier de services de modelage dans une salle privative а l’ambiance cosy."], ["created_at", "2017-10-04 11:15:02.506847"], ["updated_at", "2017-10-04 11:15:02.506847"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mHouse Load (0.3ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" ORDER BY "houses"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mHouse Load (0.8ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (5.9ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 2]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 3]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 4]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 5]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 6]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 7]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 8]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 9]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 10]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 11]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 12]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 13]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 14]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 15]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 16]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 17]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 18]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 19]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 20]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 21]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 22]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 23]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 24]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 25]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 26]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 27]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 28]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 29]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 30]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 31]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 32]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 33]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 34]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 35]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 36]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 37]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 38]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 39]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 40]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 41]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "La Bouteillan;4;Dйcouvrez ce magnifique appartement а l’ambiance zen et rйsolument contemporaine"], ["epis", 0], ["description", " disposant d’une grande chambre avec salle de bain (douche)"], ["created_at", "2017-10-04 11:18:20.097322"], ["updated_at", "2017-10-04 11:18:20.097322"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "La Lucque;3;Bвti sur un ancien prieurй"], ["epis", 0], ["description", "  la premiиre chambre est  composй de deux lits en 90 qui peuvent кtre rapprochйs. En passant  par cette chambre"], ["created_at", "2017-10-04 11:18:20.099526"], ["updated_at", "2017-10-04 11:18:20.099526"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "La Manzanille;3;Un subtil mйlange d’ancien et de contemporain"], ["epis", 0], ["description", " une terrasse tropйzienne йquipйe d’un barbecue йlectrique"], ["created_at", "2017-10-04 11:18:20.101140"], ["updated_at", "2017-10-04 11:18:20.101140"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "La Picholine;2;Dans un ancien logement de vigneron"], ["epis", 0], ["description", " par un coin salon"], ["created_at", "2017-10-04 11:18:20.102824"], ["updated_at", "2017-10-04 11:18:20.102824"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Les Oliviers;3;Dans un ancien logement de vigneron"], ["epis", 0], ["description", " par un coin salon"], ["created_at", "2017-10-04 11:18:20.104423"], ["updated_at", "2017-10-04 11:18:20.104423"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Les Vignes;3;Dans un ancien logement de vigneron"], ["epis", 0], ["description", " par un coin salon fait sur mesure"], ["created_at", "2017-10-04 11:18:20.106055"], ["updated_at", "2017-10-04 11:18:20.106055"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Le Loft;4;Dйcouvrez ce magnifique Loft а l’ambiance zen et rйsolument contemporaine"], ["epis", 0], ["description", " disposant d’une suite parentale avec salle de bain (baignoire et douche)"], ["created_at", "2017-10-04 11:18:20.107783"], ["updated_at", "2017-10-04 11:18:20.107783"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mHouse Load (0.3ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" ORDER BY "houses"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" ORDER BY "houses"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 42]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 43]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 44]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 45]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 46]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 47]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 48]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "La Bouteillan;4;Dйcouvrez ce magnifique appartement а l’ambiance zen et rйsolument contemporaine"], ["epis", 0], ["description", " disposant d’une grande chambre avec salle de bain (douche)"], ["created_at", "2017-10-04 11:20:22.569778"], ["updated_at", "2017-10-04 11:20:22.569778"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "La Lucque;3;Bвti sur un ancien prieurй"], ["epis", 0], ["description", "  la premiиre chambre est  composй de deux lits en 90 qui peuvent кtre rapprochйs. En passant  par cette chambre"], ["created_at", "2017-10-04 11:20:22.572363"], ["updated_at", "2017-10-04 11:20:22.572363"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "La Manzanille;3;Un subtil mйlange d’ancien et de contemporain"], ["epis", 0], ["description", " une terrasse tropйzienne йquipйe d’un barbecue йlectrique"], ["created_at", "2017-10-04 11:20:22.574979"], ["updated_at", "2017-10-04 11:20:22.574979"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "La Picholine;2;Dans un ancien logement de vigneron"], ["epis", 0], ["description", " par un coin salon"], ["created_at", "2017-10-04 11:20:22.577956"], ["updated_at", "2017-10-04 11:20:22.577956"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Les Oliviers;3;Dans un ancien logement de vigneron"], ["epis", 0], ["description", " par un coin salon"], ["created_at", "2017-10-04 11:20:22.580335"], ["updated_at", "2017-10-04 11:20:22.580335"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Les Vignes;3;Dans un ancien logement de vigneron"], ["epis", 0], ["description", " par un coin salon fait sur mesure"], ["created_at", "2017-10-04 11:20:22.582823"], ["updated_at", "2017-10-04 11:20:22.582823"]]
+  [1m[35m (3.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Le Loft;4;Dйcouvrez ce magnifique Loft а l’ambiance zen et rйsolument contemporaine"], ["epis", 0], ["description", " disposant d’une suite parentale avec salle de bain (baignoire et douche)"], ["created_at", "2017-10-04 11:20:22.588452"], ["updated_at", "2017-10-04 11:20:22.588452"]]
+  [1m[35m (4.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 49]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 50]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 51]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 52]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 53]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 54]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 55]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "La Bouteillan;4;Dйcouvrez ce magnifique appartement а l’ambiance zen et rйsolument contemporaine"], ["epis", 0], ["description", " disposant d’une grande chambre avec salle de bain (douche)"], ["created_at", "2017-10-04 11:21:05.930552"], ["updated_at", "2017-10-04 11:21:05.930552"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "La Lucque;3;Bвti sur un ancien prieurй"], ["epis", 0], ["description", "  la premiиre chambre est  composй de deux lits en 90 qui peuvent кtre rapprochйs. En passant  par cette chambre"], ["created_at", "2017-10-04 11:21:05.932814"], ["updated_at", "2017-10-04 11:21:05.932814"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "La Manzanille;3;Un subtil mйlange d’ancien et de contemporain"], ["epis", 0], ["description", " une terrasse tropйzienne йquipйe d’un barbecue йlectrique"], ["created_at", "2017-10-04 11:21:05.934574"], ["updated_at", "2017-10-04 11:21:05.934574"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "La Picholine;2;Dans un ancien logement de vigneron"], ["epis", 0], ["description", " par un coin salon"], ["created_at", "2017-10-04 11:21:05.936266"], ["updated_at", "2017-10-04 11:21:05.936266"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Les Oliviers;3;Dans un ancien logement de vigneron"], ["epis", 0], ["description", " par un coin salon"], ["created_at", "2017-10-04 11:21:05.937925"], ["updated_at", "2017-10-04 11:21:05.937925"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Les Vignes;3;Dans un ancien logement de vigneron"], ["epis", 0], ["description", " par un coin salon fait sur mesure"], ["created_at", "2017-10-04 11:21:05.940875"], ["updated_at", "2017-10-04 11:21:05.940875"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Le Loft;4;Dйcouvrez ce magnifique Loft а l’ambiance zen et rйsolument contemporaine"], ["epis", 0], ["description", " disposant d’une suite parentale avec salle de bain (baignoire et douche)"], ["created_at", "2017-10-04 11:21:05.943663"], ["updated_at", "2017-10-04 11:21:05.943663"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 56]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 57]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 58]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 59]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 60]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 61]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "houses" WHERE "houses"."id" = $1[0m  [["id", 62]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "La Bouteillan"], ["epis", 4], ["description", "Dйcouvrez ce magnifique appartement а l’ambiance zen et rйsolument contemporaine, situй au dernier йtage d’une ancienne cave а vin. D’une superficie de 100 mІ, disposant d’une grande chambre avec salle de bain (douche), d’un grand salon, sйjour entiиrement йquipй , d’une vaste cuisine conviviale digne d’un grand chef, il offre un cadre idйal pour des clients exigeants, en quкte de repos et de luxe. Vous serez sйduits par la terrasse invitant а la dйtente, son salon d’йtй invitant au repos et а la lecture. A vos pieds, le vignoble, l’oliveraie, la riviиre, et en toile de fond une vue magnifique sur la riviиre Aude. Vous disposerez d’un accиs privilйgiй direct а la salle de dйtente et de sport, et pourrez profiter а loisir des йquipements sportifs, piscine intйrieure, jacuzzi, hamman, sauna, billard et du coin lecture. Il est, en outre possible, sur rйservation de bйnйficier de services de modelage dans une salle privative а l’ambiance cosy."], ["created_at", "2017-10-04 11:23:59.954120"], ["updated_at", "2017-10-04 11:23:59.954120"]]
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "La Lucque"], ["epis", 3], ["description", "Bвti sur un ancien prieurй, ce gоte porte le nom d’une variйtй d’olive cultivй par le domaine. En entrant,  la premiиre chambre est  composй de deux lits en 90 qui peuvent кtre rapprochйs. En passant  par cette chambre, vous accйdez au 1er йtage а une deuxiиme chambre de deux lits en 90. La troisiиme chambre, en rez-de-chaussйe, offre une vue sur la terrasse et la piscine extйrieure. La piиce principale donne une ambiance ancienne revisitйe aux couleurs cosy !! Vous aurez le privilиge d’accйder а une terrasse йquipй d’un barbecue invitant а l’apйritif, grillade. Vous aurez alors la possibilitй de vous prйlasser sur les bains de soleil de la terrasse privйe. Ce gоte donne accиs  directement  а la piscine extйrieure vous permettant de profiter  immйdiatement de tous les йquipements mis а votre disposition. La proximitй de la riviиre est un appel  pour les amateurs de pкche (carte de pкche pour l’Aude en vente sur internet ou dans les magasins spйcialisйs)."], ["created_at", "2017-10-04 11:23:59.957119"], ["updated_at", "2017-10-04 11:23:59.957119"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "La Manzanille"], ["epis", 3], ["description", "Un subtil mйlange d’ancien et de contemporain, certifie l’authenticitй et le charme de ce gоte а l’йtage. La grande piиce spacieuse vous accueillera par un coin salon confortable. Vous partagerez vos repas dans la grande cuisine entiиrement йquipй. Le gоte est composй de trois chambres dont une dйdiйe aux enfants avec ses deux lits ainsi qu’un lit pour bйbй. Une salle bain йquipйe d’une baignoire. Sur le mкme palier, une terrasse tropйzienne йquipйe d’un barbecue йlectrique, vous accueillera pour vos apйritifs et repas. Vous apprйcierez la vue imprenable sur la riviиre l’Aude ainsi que la piscine extйrieure donnant а cet espace une ambiance reposante."], ["created_at", "2017-10-04 11:23:59.958863"], ["updated_at", "2017-10-04 11:23:59.958863"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "La Picholine"], ["epis", 2], ["description", "Dans un ancien logement de vigneron, a йtй amйnagй un gоte а l’ambiance cosy. Une piиce principale vous accueillera, par un coin salon, et une cuisine amйricaine entiиrement йquipйe pour vos repas. Vous trouverez йgalement une chambre йquipйe d’un grand lit et un coin nuit avec un lit en 90. Pour vous faciliter la vie, tout l’йquipement nйcessaire est fourni : four, four micro-ondes, rйfrigйrateur/ congйlateur, grille-pain… A l’extйrieur, la terrasse invitant а l’apйritif ou une grillade faite dans un barbecue (en dur), vous donneront l’ambiance de vacances et de dйtente."], ["created_at", "2017-10-04 11:23:59.960592"], ["updated_at", "2017-10-04 11:23:59.960592"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Les Oliviers"], ["epis", 3], ["description", "Dans un ancien logement de vigneron, a йtй amйnagй un gоte а l’ambiance cosy. Une piиce principale vous accueillera, par un coin salon, et une cuisine amйricaine entiиrement йquipйe pour vos repas. Vous trouverez йgalement une chambre йquipйe d’un grand lit et un coin nuit avec un lit en 90. Pour vous faciliter la vie, tout l’йquipement nйcessaire est fourni : four, four micro-ondes, rйfrigйrateur/ congйlateur, grille-pain… A l’extйrieur, la terrasse invitant а l’apйritif ou une grillade faite dans un barbecue (en dur), vous donneront l’ambiance de vacances et de dйtente."], ["created_at", "2017-10-04 11:23:59.962235"], ["updated_at", "2017-10-04 11:23:59.962235"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Les Vignes"], ["epis", 3], ["description", "Dans un ancien logement de vigneron, a йtй amйnagй un gоte а l’ambiance cosy. Une piиce principale vous accueillera, par un coin salon fait sur mesure, et une cuisine amйricaine entiиrement йquipйe pour vos repas. A l’йtage se trouve le coin nuit la premiиre chambre йquipйs de 3 petits lits dont 2 peuvent кtre rapprochйs. Du balcon, vous aurez le privilиge d’admirer la vue sur le vignoble et les couchers de soleil. Les deux autres chambres se trouvent а l’йtage. Elles ont toutes l’avantage d’кtre йquipй d’une salle d’eau privative. A l’extйrieur, la terrasse invitant а l’apйritif ou une grillade faite dans un barbecue (en dur), vous donneront l’ambiance de vacances et de dйtente. Vous aurez alors la possibilitй de vous prйlasser sur les bains de soleil dans le jardin clos engazonnй. Ce gоte donne le privilиge d’accйder par le jardin clos, а la salle de dйtente. Vous apprйcierez la vue sur le vignoble et regarderez le soleil se coucher, aprиs une belle journйe de dйtente !"], ["created_at", "2017-10-04 11:23:59.964114"], ["updated_at", "2017-10-04 11:23:59.964114"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "houses" ("name", "epis", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Le Loft"], ["epis", 4], ["description", "Dйcouvrez ce magnifique Loft а l’ambiance zen et rйsolument contemporaine, situй au dernier йtage d’une ancienne cave а vin. D’une superficie de 200 mІ, disposant d’une suite parentale avec salle de bain (baignoire et douche), d’un grand salon, sйjour entiиrement йquipй des derniиres technologies numйriques, d’une vaste cuisine conviviale digne d’un grand chef, il offre un cadre idйal pour des clients exigeants, en quкte de repos et de luxe. Vous serez sйduits par la spacieuse terrasse invitant а la dйtente avec son jacuzzi, son solarium, sa cuisine d’йtй йquipйe d’un four а pain et d’un barbecue moderne. A vos pieds, le vignoble, l’oliveraie, la riviиre, et en toile de fond une vue magnifique sur la montagne noire. Une deuxiиme chambre disposant de deux lit en 140, avec salle de d’eau privative, accueillera vos invitйs ou enfants. Vous disposerez d’un accиs privilйgiй direct а la salle de dйtente et de sport, et pourrez profiter а loisir des йquipements sportifs, piscine intйrieure, jacuzzi, hamman, sauna, billard et du coin lecture. Il est, en outre possible, sur rйservation de bйnйficier de services de modelage dans une salle privative а l’ambiance cosy."], ["created_at", "2017-10-04 11:23:59.965955"], ["updated_at", "2017-10-04 11:23:59.965955"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mHouse Load (0.3ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" ORDER BY "houses"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+Started GET "/" for 127.0.0.1 at 2017-10-04 13:29:08 +0200
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.3ms)
+  Rendered shared/_navbar.html.erb (11.8ms)
+  Rendered shared/_flashes.html.erb (0.5ms)
+Completed 200 OK in 5641ms (Views: 5638.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-10-04 13:30:05 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (8.3ms)
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    1: <h1>Pages#home</h1>
+    2: <p>Find me in app/views/pages/home.html.erb</p>
+    3: 
+    4: <% @houses.each do |house|  %>
+    5: <%=  house.name %>
+    6: <% end %>
+  
+app/views/pages/home.html.erb:4:in `_app_views_pages_home_html_erb__1155325611851716217_70363248391100'
+Started PUT "/__web_console/repl_sessions/3c6c1a580e9f348a4b5131624803cfbb" for 127.0.0.1 at 2017-10-04 13:30:15 +0200
+Started PUT "/__web_console/repl_sessions/3c6c1a580e9f348a4b5131624803cfbb" for 127.0.0.1 at 2017-10-04 13:30:16 +0200
+Started GET "/" for 127.0.0.1 at 2017-10-04 13:31:18 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (2.3ms)
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    1: <h1>Pages#home</h1>
+    2: <p>Find me in app/views/pages/home.html.erb</p>
+    3: 
+    4: <% @houses.each do |house|  %>
+    5: <%=  house.name %>
+    6: <% end %>
+  
+app/views/pages/home.html.erb:4:in `_app_views_pages_home_html_erb__1155325611851716217_70363311747580'
+Started GET "/" for 127.0.0.1 at 2017-10-04 13:34:38 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    1: <h1>Pages#home</h1>
+    2: <p>Find me in app/views/pages/home.html.erb</p>
+    3: 
+    4: <% @houses.each do |house|  %>
+    5: <%=  house.name %>
+    6: <% end %>
+  
+app/views/pages/home.html.erb:4:in `_app_views_pages_home_html_erb__1155325611851716217_70363309841160'
+Started GET "/" for 127.0.0.1 at 2017-10-04 13:35:21 +0200
+Processing by HousesController#index as HTML
+Completed 401 Unauthorized in 5ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-10-04 13:35:21 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.2ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (58.0ms)
+  Rendered shared/_navbar.html.erb (1.7ms)
+  Rendered shared/_flashes.html.erb (0.5ms)
+Completed 200 OK in 100ms (Views: 83.7ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-10-04 13:36:08 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.3ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (7.3ms)
+  Rendered shared/_navbar.html.erb (1.6ms)
+  Rendered shared/_flashes.html.erb (0.3ms)
+Completed 200 OK in 44ms (Views: 27.6ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-10-04 13:36:12 +0200
+Processing by HousesController#index as HTML
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (11.0ms)
+  Rendered shared/_navbar.html.erb (1.7ms)
+  Rendered shared/_flashes.html.erb (0.3ms)
+Completed 200 OK in 34ms (Views: 28.3ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-10-04 13:37:40 +0200
+Processing by HousesController#index as HTML
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (1.1ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (2.9ms)
+  Rendered shared/_navbar.html.erb (1.6ms)
+  Rendered shared/_flashes.html.erb (0.4ms)
+Completed 200 OK in 31ms (Views: 28.7ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/houses/index" for 127.0.0.1 at 2017-10-04 13:45:00 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/houses/index"):
+  
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+puma (3.10.0) lib/puma/configuration.rb:225:in `call'
+puma (3.10.0) lib/puma/server.rb:605:in `handle_request'
+puma (3.10.0) lib/puma/server.rb:437:in `process_client'
+puma (3.10.0) lib/puma/server.rb:301:in `block in run'
+puma (3.10.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2017-10-04 13:54:29 +0200
+Processing by HousesController#index as HTML
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.7ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (2.7ms)
+  Rendered shared/_navbar.html.erb (2.5ms)
+  Rendered shared/_flashes.html.erb (0.5ms)
+Completed 200 OK in 29ms (Views: 26.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-10-04 13:58:20 +0200
+Processing by HousesController#index as HTML
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.3ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (2.5ms)
+  Rendered shared/_navbar.html.erb (6.0ms)
+  Rendered shared/_flashes.html.erb (0.4ms)
+Completed 200 OK in 31ms (Views: 29.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-10-04 14:06:00 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.3ms)
+  Rendered shared/_navbar.html.erb (2.0ms)
+  Rendered shared/_flashes.html.erb (0.5ms)
+Completed 200 OK in 24ms (Views: 22.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-10-04 14:08:49 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.3ms)
+  Rendered shared/_navbar.html.erb (1.7ms)
+  Rendered shared/_flashes.html.erb (0.4ms)
+Completed 200 OK in 22ms (Views: 20.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-10-04 14:08:55 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.3ms)
+  Rendered shared/_navbar.html.erb (1.5ms)
+  Rendered shared/_flashes.html.erb (0.4ms)
+Completed 200 OK in 20ms (Views: 18.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-10-04 14:13:28 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.7ms)
+  Rendered shared/_navbar.html.erb (2.0ms)
+  Rendered shared/_flashes.html.erb (0.7ms)
+Completed 200 OK in 25ms (Views: 23.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-10-04 14:19:17 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.3ms)
+  Rendered shared/_navbar.html.erb (1.7ms)
+  Rendered shared/_flashes.html.erb (0.3ms)
+Completed 200 OK in 21ms (Views: 19.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-10-04 14:19:54 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.5ms)
+  Rendered shared/_navbar.html.erb (1.8ms)
+  Rendered shared/_flashes.html.erb (0.6ms)
+Completed 200 OK in 35ms (Views: 34.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-10-04 14:20:17 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.4ms)
+  Rendered shared/_navbar.html.erb (1.9ms)
+  Rendered shared/_flashes.html.erb (0.4ms)
+Completed 200 OK in 24ms (Views: 22.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-10-04 14:22:16 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.4ms)
+  Rendered shared/_navbar.html.erb (3.9ms)
+  Rendered shared/_flashes.html.erb (0.6ms)
+Completed 200 OK in 2760ms (Views: 2758.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-10-04 14:26:42 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.3ms)
+  Rendered shared/_navbar.html.erb (2.1ms)
+  Rendered shared/_flashes.html.erb (0.3ms)
+Completed 200 OK in 29ms (Views: 27.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-10-04 14:27:28 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.4ms)
+  Rendered shared/_navbar.html.erb (2.0ms)
+  Rendered shared/_flashes.html.erb (0.4ms)
+Completed 200 OK in 69ms (Views: 67.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-10-04 14:28:33 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.4ms)
+  Rendered shared/_navbar.html.erb (2.9ms)
+  Rendered shared/_flashes.html.erb (0.6ms)
+Completed 200 OK in 2509ms (Views: 2508.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-10-04 14:29:59 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.2ms)
+  Rendered shared/_navbar.html.erb (3.1ms)
+  Rendered shared/_flashes.html.erb (0.6ms)
+Completed 200 OK in 2878ms (Views: 2874.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-10-04 14:30:19 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.4ms)
+  Rendered shared/_navbar.html.erb (2.5ms)
+  Rendered shared/_flashes.html.erb (0.4ms)
+Completed 200 OK in 26ms (Views: 24.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-10-04 14:44:34 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.4ms)
+  Rendered shared/_navbar.html.erb (2.7ms)
+  Rendered shared/_flashes.html.erb (0.5ms)
+Completed 200 OK in 24ms (Views: 22.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/houses/index" for 127.0.0.1 at 2017-10-04 14:44:45 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/houses/index"):
+  
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+puma (3.10.0) lib/puma/configuration.rb:225:in `call'
+puma (3.10.0) lib/puma/server.rb:605:in `handle_request'
+puma (3.10.0) lib/puma/server.rb:437:in `process_client'
+puma (3.10.0) lib/puma/server.rb:301:in `block in run'
+puma (3.10.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/houses/index" for 127.0.0.1 at 2017-10-04 14:46:29 +0200
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+AbstractController::ActionNotFound (The action 'show' could not be found for HousesController):
+  
+actionpack (5.1.4) lib/abstract_controller/base.rb:119:in `process'
+/usr/local/Cellar/rbenv/1.1.0/versions/2.4.1/lib/ruby/gems/2.4.0/gems/actionview-5.1.4/lib/action_view/rendering.rb:30:in `process'
+actionpack (5.1.4) lib/action_controller/metal.rb:189:in `dispatch'
+actionpack (5.1.4) lib/action_controller/metal.rb:253:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:834:in `call'
+warden (1.2.7) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.7) lib/warden/manager.rb:35:in `catch'
+warden (1.2.7) lib/warden/manager.rb:35:in `call'
+rack (2.0.3) lib/rack/etag.rb:25:in `call'
+rack (2.0.3) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.3) lib/rack/head.rb:12:in `call'
+rack (2.0.3) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.3) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.1.4) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.4) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+puma (3.10.0) lib/puma/configuration.rb:225:in `call'
+puma (3.10.0) lib/puma/server.rb:605:in `handle_request'
+puma (3.10.0) lib/puma/server.rb:437:in `process_client'
+puma (3.10.0) lib/puma/server.rb:301:in `block in run'
+puma (3.10.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/houses/index" for 127.0.0.1 at 2017-10-04 14:46:36 +0200
+  
+SyntaxError (/Users/soso/code/aube-des-temps/app/controllers/houses_controller.rb:12: syntax error, unexpected keyword_end
+  end
+     ^):
+  
+app/controllers/houses_controller.rb:12: syntax error, unexpected keyword_end
+Started GET "/houses/index" for 127.0.0.1 at 2017-10-04 14:48:28 +0200
+Processing by HousesController#show as HTML
+  Parameters: {"id"=>"index"}
+Completed 401 Unauthorized in 7ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-10-04 14:48:28 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.2ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (60.4ms)
+  Rendered shared/_navbar.html.erb (2.8ms)
+  Rendered shared/_flashes.html.erb (0.7ms)
+Completed 200 OK in 400ms (Views: 384.0ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/houses/index" for 127.0.0.1 at 2017-10-04 14:48:39 +0200
+Processing by HousesController#show as HTML
+  Parameters: {"id"=>"index"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-10-04 14:48:39 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.3ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (9.5ms)
+  Rendered shared/_navbar.html.erb (3.4ms)
+  Rendered shared/_flashes.html.erb (0.7ms)
+Completed 200 OK in 43ms (Views: 41.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-10-04 14:48:52 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.3ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (10.9ms)
+  Rendered shared/_navbar.html.erb (3.6ms)
+  Rendered shared/_flashes.html.erb (0.4ms)
+Completed 200 OK in 74ms (Views: 49.1ms | ActiveRecord: 7.1ms)
+
+
+Started GET "/houses/index" for 127.0.0.1 at 2017-10-04 14:48:58 +0200
+  
+SyntaxError (/Users/soso/code/aube-des-temps/app/controllers/houses_controller.rb:4: syntax error, unexpected '\n', expecting =>):
+  
+app/controllers/houses_controller.rb:4: syntax error, unexpected '\n', expecting =>
+Started GET "/houses/index" for 127.0.0.1 at 2017-10-04 14:49:20 +0200
+Processing by HousesController#show as HTML
+  Parameters: {"id"=>"index"}
+  [1m[36mHouse Load (0.3ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+Completed 404 Not Found in 10ms (ActiveRecord: 3.1ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find House with 'id'=index):
+  
+app/controllers/houses_controller.rb:17:in `set_house'
+Started GET "/houses/index" for 127.0.0.1 at 2017-10-04 14:53:18 +0200
+Processing by HousesController#show as HTML
+  Parameters: {"id"=>"index"}
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+Completed 404 Not Found in 8ms (ActiveRecord: 2.7ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find House with 'id'=index):
+  
+app/controllers/houses_controller.rb:17:in `set_house'
+Started GET "/houses/index" for 127.0.0.1 at 2017-10-04 14:54:22 +0200
+Processing by HousesController#show as HTML
+  Parameters: {"id"=>"index"}
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.2ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find House with 'id'=index):
+  
+app/controllers/houses_controller.rb:17:in `set_house'
+Started PUT "/__web_console/repl_sessions/259d977afc3292ccde3bb73a3ce5ae81" for 127.0.0.1 at 2017-10-04 14:54:32 +0200
+Started PUT "/__web_console/repl_sessions/259d977afc3292ccde3bb73a3ce5ae81" for 127.0.0.1 at 2017-10-04 14:54:33 +0200
+Started GET "/" for 127.0.0.1 at 2017-10-04 14:57:03 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.7ms)
+  Rendered shared/_navbar.html.erb (1.7ms)
+  Rendered shared/_flashes.html.erb (0.3ms)
+Completed 200 OK in 22ms (Views: 21.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/houses" for 127.0.0.1 at 2017-10-04 14:57:06 +0200
+Processing by HousesController#index as HTML
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.3ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (8.8ms)
+  Rendered shared/_navbar.html.erb (1.7ms)
+  Rendered shared/_flashes.html.erb (0.7ms)
+Completed 200 OK in 29ms (Views: 28.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/houses" for 127.0.0.1 at 2017-10-04 16:18:21 +0200
+Processing by HousesController#index as HTML
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (20.0ms)
+  Rendered shared/_navbar.html.erb (4.0ms)
+  Rendered shared/_flashes.html.erb (0.7ms)
+Completed 200 OK in 64ms (Views: 53.6ms | ActiveRecord: 4.6ms)
+
+
+Started GET "/houses.63" for 127.0.0.1 at 2017-10-04 16:18:23 +0200
+Processing by HousesController#index as 
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.4ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (4.7ms)
+  Rendered shared/_navbar.html.erb (2.3ms)
+  Rendered shared/_flashes.html.erb (0.5ms)
+Completed 200 OK in 78ms (Views: 66.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/houses.63" for 127.0.0.1 at 2017-10-04 16:18:26 +0200
+Processing by HousesController#index as 
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.3ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (3.0ms)
+  Rendered shared/_navbar.html.erb (2.0ms)
+  Rendered shared/_flashes.html.erb (0.4ms)
+Completed 200 OK in 56ms (Views: 46.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/houses.64" for 127.0.0.1 at 2017-10-04 16:18:30 +0200
+Processing by HousesController#index as 
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.3ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (2.8ms)
+  Rendered shared/_navbar.html.erb (2.1ms)
+  Rendered shared/_flashes.html.erb (0.3ms)
+Completed 200 OK in 53ms (Views: 44.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/houses" for 127.0.0.1 at 2017-10-04 16:19:33 +0200
+Processing by HousesController#index as HTML
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (11.1ms)
+  Rendered shared/_navbar.html.erb (2.1ms)
+  Rendered shared/_flashes.html.erb (0.4ms)
+Completed 200 OK in 34ms (Views: 27.9ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/houses.63" for 127.0.0.1 at 2017-10-04 16:19:37 +0200
+Processing by HousesController#index as 
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (4.1ms)
+  Rendered shared/_navbar.html.erb (1.7ms)
+  Rendered shared/_flashes.html.erb (0.5ms)
+Completed 200 OK in 52ms (Views: 42.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/houses/63" for 127.0.0.1 at 2017-10-04 16:19:42 +0200
+Processing by HousesController#show as HTML
+  Parameters: {"id"=>"63"}
+  [1m[36mHouse Load (0.3ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 63], ["LIMIT", 1]]
+  Rendering houses/show.html.erb within layouts/application
+  Rendered houses/show.html.erb within layouts/application (226.9ms)
+Completed 500 Internal Server Error in 249ms (ActiveRecord: 2.4ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `house' for #<#<Class:0x007fe44837f030>:0x007fe448191840>
+Did you mean?  @house):
+    2: <h1>SHOW</h1>
+    3: 
+    4: 
+    5: <%= simple_form_for [house, @reservation] do |f| %>
+    6:   <input class="datetimepicker" type="hidden" name="reservation[check_in]">
+    7:   <input class="datetimepicker" type="hidden" name="reservation[check_out]">
+    8:   <%= f.button :submit, class: 'btn-green' %>
+  
+app/views/houses/show.html.erb:5:in `_app_views_houses_show_html_erb___364370798690464788_70309219453480'
+Started GET "/houses/63" for 127.0.0.1 at 2017-10-04 16:20:09 +0200
+Processing by HousesController#show as HTML
+  Parameters: {"id"=>"63"}
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 63], ["LIMIT", 1]]
+  Rendering houses/show.html.erb within layouts/application
+  Rendered houses/show.html.erb within layouts/application (111.7ms)
+Completed 500 Internal Server Error in 131ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionView::Template::Error (undefined method `reservations_path' for #<#<Class:0x007fe44837f030>:0x007fe443b55ea8>
+Did you mean?  resolve_asset_path):
+    2: <h1>SHOW</h1>
+    3: 
+    4: 
+    5: <%= simple_form_for [@reservation] do |f| %>
+    6:   <input class="datetimepicker" type="hidden" name="reservation[check_in]">
+    7:   <input class="datetimepicker" type="hidden" name="reservation[check_out]">
+    8:   <%= f.button :submit, class: 'btn-green' %>
+  
+app/views/houses/show.html.erb:5:in `_app_views_houses_show_html_erb___364370798690464788_70309182616680'
+Started GET "/houses/63" for 127.0.0.1 at 2017-10-04 16:21:26 +0200
+Processing by HousesController#show as HTML
+  Parameters: {"id"=>"63"}
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 63], ["LIMIT", 1]]
+  Rendering houses/show.html.erb within layouts/application
+  Rendered houses/show.html.erb within layouts/application (126.0ms)
+Completed 500 Internal Server Error in 132ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionView::Template::Error (undefined method `house_reservations_path' for #<#<Class:0x007fe44837f030>:0x007fe448497260>
+Did you mean?  house_reservation_index_path):
+    2: <h1>SHOW</h1>
+    3: 
+    4: 
+    5: <%= simple_form_for [@house, @reservation] do |f| %>
+    6:   <input class="datetimepicker" type="hidden" name="reservation[check_in]">
+    7:   <input class="datetimepicker" type="hidden" name="reservation[check_out]">
+    8:   <%= f.button :submit, class: 'btn-green' %>
+  
+app/views/houses/show.html.erb:5:in `_app_views_houses_show_html_erb___364370798690464788_70309221023320'
+Started GET "/houses/63" for 127.0.0.1 at 2017-10-04 16:23:58 +0200
+Processing by HousesController#show as HTML
+  Parameters: {"id"=>"63"}
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 63], ["LIMIT", 1]]
+  Rendering houses/show.html.erb within layouts/application
+  Rendered houses/show.html.erb within layouts/application (120.5ms)
+Completed 500 Internal Server Error in 153ms (ActiveRecord: 6.1ms)
+
+
+  
+ActionView::Template::Error (undefined method `house_reservations_path' for #<#<Class:0x007fe449274f68>:0x007fe44926ecd0>
+Did you mean?  house_reservation_index_path):
+    2: <h1>SHOW</h1>
+    3: 
+    4: 
+    5: <%= simple_form_for [@house, @reservation] do |f| %>
+    6:   <input class="datetimepicker" type="hidden" name="reservation[check_in]">
+    7:   <input class="datetimepicker" type="hidden" name="reservation[check_out]">
+    8:   <%= f.button :submit, class: 'btn-green' %>
+  
+app/views/houses/show.html.erb:5:in `_app_views_houses_show_html_erb___364370798690464788_70309228293640'
+Started GET "/houses" for 127.0.0.1 at 2017-10-04 16:24:02 +0200
+Processing by HousesController#index as HTML
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (2.3ms)
+  Rendered shared/_navbar.html.erb (2.9ms)
+  Rendered shared/_flashes.html.erb (0.7ms)
+Completed 200 OK in 33ms (Views: 31.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/houses.63" for 127.0.0.1 at 2017-10-04 16:24:03 +0200
+Processing by HousesController#index as 
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (4.0ms)
+  Rendered shared/_navbar.html.erb (2.1ms)
+  Rendered shared/_flashes.html.erb (0.4ms)
+Completed 200 OK in 54ms (Views: 44.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/houses/63" for 127.0.0.1 at 2017-10-04 16:24:07 +0200
+Processing by HousesController#show as HTML
+  Parameters: {"id"=>"63"}
+  [1m[36mHouse Load (0.1ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 63], ["LIMIT", 1]]
+  Rendering houses/show.html.erb within layouts/application
+  Rendered houses/show.html.erb within layouts/application (112.5ms)
+Completed 500 Internal Server Error in 118ms (ActiveRecord: 0.1ms)
+
+
+  
+ActionView::Template::Error (undefined method `house_reservations_path' for #<#<Class:0x007fe449274f68>:0x007fe443aea018>
+Did you mean?  house_reservation_index_path):
+    2: <h1>SHOW</h1>
+    3: 
+    4: 
+    5: <%= simple_form_for [@house, @reservation] do |f| %>
+    6:   <input class="datetimepicker" type="hidden" name="reservation[check_in]">
+    7:   <input class="datetimepicker" type="hidden" name="reservation[check_out]">
+    8:   <%= f.button :submit, class: 'btn-green' %>
+  
+app/views/houses/show.html.erb:5:in `_app_views_houses_show_html_erb___364370798690464788_70309182395700'
+  [1m[36mHouse Load (0.3ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" ORDER BY "houses"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mReservation Load (2.1ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations"[0m
+Started GET "/houses/63" for 127.0.0.1 at 2017-10-04 16:30:17 +0200
+Processing by HousesController#show as HTML
+  Parameters: {"id"=>"63"}
+  [1m[36mHouse Load (0.1ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 63], ["LIMIT", 1]]
+  Rendering houses/show.html.erb within layouts/application
+  Rendered houses/show.html.erb within layouts/application (0.4ms)
+  Rendered shared/_navbar.html.erb (1.8ms)
+  Rendered shared/_flashes.html.erb (0.3ms)
+Completed 200 OK in 44ms (Views: 20.6ms | ActiveRecord: 5.2ms)
+
+
+Started GET "/houses" for 127.0.0.1 at 2017-10-04 16:30:20 +0200
+Processing by HousesController#index as HTML
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (2.2ms)
+  Rendered shared/_navbar.html.erb (2.8ms)
+  Rendered shared/_flashes.html.erb (0.4ms)
+Completed 200 OK in 23ms (Views: 21.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/houses.63" for 127.0.0.1 at 2017-10-04 16:30:21 +0200
+Processing by HousesController#index as 
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (2.4ms)
+  Rendered shared/_navbar.html.erb (2.0ms)
+  Rendered shared/_flashes.html.erb (0.3ms)
+Completed 200 OK in 53ms (Views: 45.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/houses.63" for 127.0.0.1 at 2017-10-04 16:31:11 +0200
+  [1m[35m (6.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HousesController#index as 
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (19.7ms)
+  Rendered shared/_navbar.html.erb (38.4ms)
+  Rendered shared/_flashes.html.erb (0.4ms)
+Completed 200 OK in 381ms (Views: 365.9ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/houses.63" for 127.0.0.1 at 2017-10-04 16:31:13 +0200
+Processing by HousesController#index as 
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (2.4ms)
+  Rendered shared/_navbar.html.erb (2.9ms)
+  Rendered shared/_flashes.html.erb (0.4ms)
+Completed 200 OK in 61ms (Views: 52.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/houses" for 127.0.0.1 at 2017-10-04 16:31:16 +0200
+Processing by HousesController#index as HTML
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (2.2ms)
+  Rendered shared/_navbar.html.erb (2.8ms)
+  Rendered shared/_flashes.html.erb (0.4ms)
+Completed 200 OK in 24ms (Views: 22.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/houses.63" for 127.0.0.1 at 2017-10-04 16:31:17 +0200
+Processing by HousesController#index as 
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.3ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (3.4ms)
+  Rendered shared/_navbar.html.erb (1.8ms)
+  Rendered shared/_flashes.html.erb (0.4ms)
+Completed 200 OK in 57ms (Views: 45.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/houses.64" for 127.0.0.1 at 2017-10-04 16:31:24 +0200
+Processing by HousesController#index as 
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (2.8ms)
+  Rendered shared/_navbar.html.erb (1.9ms)
+  Rendered shared/_flashes.html.erb (0.4ms)
+Completed 200 OK in 55ms (Views: 45.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/houses" for 127.0.0.1 at 2017-10-04 16:34:19 +0200
+Processing by HousesController#index as HTML
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.5ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (2.9ms)
+  Rendered shared/_navbar.html.erb (1.9ms)
+  Rendered shared/_flashes.html.erb (0.4ms)
+Completed 200 OK in 38ms (Views: 36.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/houses/63" for 127.0.0.1 at 2017-10-04 16:34:20 +0200
+Processing by HousesController#show as HTML
+  Parameters: {"id"=>"63"}
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 63], ["LIMIT", 1]]
+  Rendering houses/show.html.erb within layouts/application
+  Rendered houses/show.html.erb within layouts/application (0.3ms)
+  Rendered shared/_navbar.html.erb (1.6ms)
+  Rendered shared/_flashes.html.erb (0.3ms)
+Completed 200 OK in 37ms (Views: 19.8ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/houses/63" for 127.0.0.1 at 2017-10-04 16:34:38 +0200
+Processing by HousesController#show as HTML
+  Parameters: {"id"=>"63"}
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 63], ["LIMIT", 1]]
+  Rendering houses/show.html.erb within layouts/application
+  Rendered houses/show.html.erb within layouts/application (183.7ms)
+Completed 500 Internal Server Error in 189ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionView::Template::Error (undefined method `house_reservations_path' for #<#<Class:0x007fb7d35e1978>:0x007fb7d8f43020>
+Did you mean?  house_reservation_index_path):
+    2: <h1>SHOW</h1>
+    3: 
+    4: 
+    5: <%= simple_form_for [@house, @reservation] do |f| %>
+    6:   <input class="datetimepicker" type="hidden" name="reservation[check_in]">
+    7:   <input class="datetimepicker" type="hidden" name="reservation[check_out]">
+    8:   <%= f.button :submit, class: 'btn-green' %>
+  
+app/views/houses/show.html.erb:5:in `_app_views_houses_show_html_erb___4279639862451099607_70213797813540'
+Started PUT "/__web_console/repl_sessions/615af116f3567446fabe90b5b4be0247" for 127.0.0.1 at 2017-10-04 16:35:46 +0200
+Started PUT "/__web_console/repl_sessions/615af116f3567446fabe90b5b4be0247" for 127.0.0.1 at 2017-10-04 16:35:47 +0200
+Started GET "/houses/63" for 127.0.0.1 at 2017-10-04 16:36:04 +0200
+Processing by HousesController#show as HTML
+  Parameters: {"id"=>"63"}
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 63], ["LIMIT", 1]]
+  Rendering houses/show.html.erb within layouts/application
+  Rendered houses/show.html.erb within layouts/application (148.9ms)
+Completed 500 Internal Server Error in 178ms (ActiveRecord: 5.3ms)
+
+
+  
+ActionView::Template::Error (undefined method `house_reservations_path' for #<#<Class:0x007fb7d3d4a9a8>:0x007fb7d3d48928>
+Did you mean?  house_reservation_index_path):
+    2: <h1>SHOW</h1>
+    3: 
+    4: 
+    5: <%= simple_form_for [@house, @reservation] do |f| %>
+    6:   <input class="datetimepicker" type="hidden" name="reservation[check_in]">
+    7:   <input class="datetimepicker" type="hidden" name="reservation[check_out]">
+    8:   <%= f.button :submit, class: 'btn-green' %>
+  
+app/views/houses/show.html.erb:5:in `_app_views_houses_show_html_erb___4279639862451099607_70213754837280'
+Started GET "/houses" for 127.0.0.1 at 2017-10-04 16:36:06 +0200
+Processing by HousesController#index as HTML
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (1.9ms)
+  Rendered shared/_navbar.html.erb (1.7ms)
+  Rendered shared/_flashes.html.erb (0.3ms)
+Completed 200 OK in 21ms (Views: 19.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/houses/63" for 127.0.0.1 at 2017-10-04 16:36:07 +0200
+Processing by HousesController#show as HTML
+  Parameters: {"id"=>"63"}
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 63], ["LIMIT", 1]]
+  Rendering houses/show.html.erb within layouts/application
+  Rendered houses/show.html.erb within layouts/application (115.0ms)
+Completed 500 Internal Server Error in 121ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionView::Template::Error (undefined method `house_reservations_path' for #<#<Class:0x007fb7d3d4a9a8>:0x007fb7d8af3588>
+Did you mean?  house_reservation_index_path):
+    2: <h1>SHOW</h1>
+    3: 
+    4: 
+    5: <%= simple_form_for [@house, @reservation] do |f| %>
+    6:   <input class="datetimepicker" type="hidden" name="reservation[check_in]">
+    7:   <input class="datetimepicker" type="hidden" name="reservation[check_out]">
+    8:   <%= f.button :submit, class: 'btn-green' %>
+  
+app/views/houses/show.html.erb:5:in `_app_views_houses_show_html_erb___4279639862451099607_70213795562920'
+Started PUT "/__web_console/repl_sessions/a605b42b995fc0fef8c6b7c75212a6e4" for 127.0.0.1 at 2017-10-04 16:36:12 +0200
+Started PUT "/__web_console/repl_sessions/a605b42b995fc0fef8c6b7c75212a6e4" for 127.0.0.1 at 2017-10-04 16:36:12 +0200
+Started PUT "/__web_console/repl_sessions/a605b42b995fc0fef8c6b7c75212a6e4" for 127.0.0.1 at 2017-10-04 16:36:20 +0200
+Started GET "/houses/63" for 127.0.0.1 at 2017-10-04 16:37:16 +0200
+Processing by HousesController#show as HTML
+  Parameters: {"id"=>"63"}
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 63], ["LIMIT", 1]]
+  Rendering houses/show.html.erb within layouts/application
+  Rendered houses/show.html.erb within layouts/application (117.3ms)
+Completed 500 Internal Server Error in 142ms (ActiveRecord: 4.8ms)
+
+
+  
+ActionView::Template::Error (undefined method `house_reservations_path' for #<#<Class:0x007fb7d697b720>:0x007fb7d4907f20>
+Did you mean?  house_reservation_index_path):
+    2: <h1>SHOW</h1>
+    3: 
+    4: 
+    5: <%= simple_form_for [@house, @reservation] do |f| %>
+    6:   <input class="datetimepicker" type="hidden" name="reservation[check_in]">
+    7:   <input class="datetimepicker" type="hidden" name="reservation[check_out]">
+    8:   <%= f.button :submit, class: 'btn-green' %>
+  
+app/views/houses/show.html.erb:5:in `_app_views_houses_show_html_erb___4279639862451099607_70213758889120'
+Started PUT "/__web_console/repl_sessions/1180282a81be5fa7295155423f57db5b" for 127.0.0.1 at 2017-10-04 16:37:19 +0200
+Started PUT "/__web_console/repl_sessions/1180282a81be5fa7295155423f57db5b" for 127.0.0.1 at 2017-10-04 16:37:19 +0200
+Started GET "/houses/63" for 127.0.0.1 at 2017-10-04 16:40:52 +0200
+Processing by HousesController#show as HTML
+  Parameters: {"id"=>"63"}
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 63], ["LIMIT", 1]]
+  Rendering houses/show.html.erb within layouts/application
+  Rendered houses/show.html.erb within layouts/application (140.9ms)
+Completed 500 Internal Server Error in 149ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionView::Template::Error (undefined method `house_reservations_path' for #<#<Class:0x007fb7d697b720>:0x007fb7d9402bb0>
+Did you mean?  house_reservation_index_path):
+    2: <h1>SHOW</h1>
+    3: 
+    4: 
+    5: <%= simple_form_for [@house, @reservation] do |f| %>
+    6:   <%= f.input :check_in, as: :date %>
+    7:   <%= f.input :check_out, as: :date %>
+    8:  <!--  <input class="datetimepicker" type="hidden" name="reservation[check_in]">
+  
+app/views/houses/show.html.erb:5:in `_app_views_houses_show_html_erb___4279639862451099607_70213800303380'
+Started GET "/houses/63" for 127.0.0.1 at 2017-10-04 16:41:44 +0200
+Processing by HousesController#show as HTML
+  Parameters: {"id"=>"63"}
+  [1m[36mHouse Load (0.1ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 63], ["LIMIT", 1]]
+  Rendering houses/show.html.erb within layouts/application
+  Rendered houses/show.html.erb within layouts/application (11.0ms)
+  Rendered shared/_navbar.html.erb (29.3ms)
+  Rendered shared/_flashes.html.erb (0.5ms)
+Completed 200 OK in 88ms (Views: 63.0ms | ActiveRecord: 4.8ms)
+
+
+Started POST "/houses/63/reservations" for 127.0.0.1 at 2017-10-04 16:41:54 +0200
+Processing by ReservationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Zeh0pMZS9iKqDIaYbxba0vmX8Fe+e6F5yi7OOT0LqmtaID9uxFl955WTaqcavhL33ERTEW1NjW5K7ZL0lAnB7w==", "reservation"=>{"check_in(1i)"=>"2017", "check_in(2i)"=>"10", "check_in(3i)"=>"4", "check_out(1i)"=>"2017", "check_out(2i)"=>"10", "check_out(3i)"=>"7"}, "commit"=>"Create Reservation", "house_id"=>"63"}
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 63], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 131ms (ActiveRecord: 0.2ms)
+
+
+  
+NameError (undefined local variable or method `reservation_params' for #<ReservationsController:0x007fb7d3dd7858>
+Did you mean?  reservation_param):
+  
+app/controllers/reservations_controller.rb:8:in `create'
+Started GET "/houses/" for 127.0.0.1 at 2017-10-04 16:42:28 +0200
+Processing by HousesController#index as HTML
+  Rendering houses/index.html.erb within layouts/application
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT "houses".* FROM "houses"[0m
+  Rendered houses/index.html.erb within layouts/application (8.4ms)
+  Rendered shared/_navbar.html.erb (1.7ms)
+  Rendered shared/_flashes.html.erb (0.3ms)
+Completed 200 OK in 29ms (Views: 24.2ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/houses/63" for 127.0.0.1 at 2017-10-04 16:42:36 +0200
+Processing by HousesController#show as HTML
+  Parameters: {"id"=>"63"}
+  [1m[36mHouse Load (0.1ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 63], ["LIMIT", 1]]
+  Rendering houses/show.html.erb within layouts/application
+  Rendered houses/show.html.erb within layouts/application (7.5ms)
+  Rendered shared/_navbar.html.erb (3.1ms)
+  Rendered shared/_flashes.html.erb (0.5ms)
+Completed 200 OK in 44ms (Views: 28.1ms | ActiveRecord: 3.7ms)
+
+
+Started POST "/houses/63/reservations" for 127.0.0.1 at 2017-10-04 16:42:40 +0200
+Processing by ReservationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"kXyIONixyQiGLZSuOnPuI+ClnJJoJCvELsPbKOLgmdSutMPy2rpCzbmyeJFP2yYGxXY/1LsSB9OuAIflS+LyUA==", "reservation"=>{"check_in(1i)"=>"2017", "check_in(2i)"=>"10", "check_in(3i)"=>"4", "check_out(1i)"=>"2017", "check_out(2i)"=>"10", "check_out(3i)"=>"5"}, "commit"=>"Create Reservation", "house_id"=>"63"}
+  [1m[36mHouse Load (0.2ms)[0m  [1m[34mSELECT  "houses".* FROM "houses" WHERE "houses"."id" = $1 LIMIT $2[0m  [["id", 63], ["LIMIT", 1]]
+No template found for ReservationsController#create, rendering head :no_content
+Completed 204 No Content in 114ms (ActiveRecord: 0.2ms)
+
+

@@ -1,0 +1,31 @@
+<div>
+  <% @houses.each do |house|  %>
+    <%= link_to house_path(house) do %>
+      <%=  house.name %>
+    <% end %>
+    <%=  house.description %>
+    <% if house.epis == 1 %>
+      <i class="fa fa-pagelines" style="color: green"></i>
+      <i class="fa fa-pagelines" style="color: lightgray"></i>
+      <i class="fa fa-pagelines" style="color: lightgray"></i>
+      <i class="fa fa-pagelines" style="color: lightgray"></i>
+    <% elsif house.epis == 2 %>
+      <i class="fa fa-pagelines" style="color: green"></i>
+      <i class="fa fa-pagelines" style="color: green"></i>
+      <i class="fa fa-pagelines" style="color: lightgray"></i>
+      <i class="fa fa-pagelines" style="color: lightgray"></i>
+    <% elsif house.epis == 3 %>
+      <i class="fa fa-pagelines" style="color: green"></i>
+      <i class="fa fa-pagelines" style="color: green"></i>
+      <i class="fa fa-pagelines" style="color: green"></i>
+      <i class="fa fa-pagelines" style="color: lightgray"></i>
+    <% elsif house.epis == 4 %>
+      <i class="fa fa-pagelines" style="color: green"></i>
+      <i class="fa fa-pagelines" style="color: green"></i>
+      <i class="fa fa-pagelines" style="color: green"></i>
+      <i class="fa fa-pagelines" style="color: green"></i>
+    <% end %>
+  <% end %>
+</div>
+
+

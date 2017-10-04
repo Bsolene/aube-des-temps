@@ -1,0 +1,11 @@
+
+<h1>SHOW</h1>
+
+
+<%= simple_form_for [@house, @reservation] do |f| %>
+  <%= f.input :check_in, as: :date %>
+  <%= f.input :check_out, as: :date %>
+ <!--  <input class="datetimepicker" type="hidden" name="reservation[check_in]">
+  <input class="datetimepicker" type="hidden" name="reservation[check_out]"> -->
+  <%= f.button :submit, class: 'btn-green' %>
+<% end %>
