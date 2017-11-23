@@ -3,6 +3,9 @@ ruby '2.4.1'
 
 gem 'devise'
 gem 'figaro'
+gem 'cloudinary'
+gem 'carrierwave', '~> 1.2'
+
 gem 'jbuilder', '~> 2.0'
 gem 'pg'
 gem 'puma'

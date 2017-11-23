@@ -1,31 +1,94 @@
-<div>
-  <% @houses.each do |house|  %>
-    <%= link_to house_path(house) do %>
-      <%=  house.name %>
-    <% end %>
-    <%=  house.description %>
-    <% if house.epis == 1 %>
-      <i class="fa fa-pagelines" style="color: green"></i>
-      <i class="fa fa-pagelines" style="color: lightgray"></i>
-      <i class="fa fa-pagelines" style="color: lightgray"></i>
-      <i class="fa fa-pagelines" style="color: lightgray"></i>
-    <% elsif house.epis == 2 %>
-      <i class="fa fa-pagelines" style="color: green"></i>
-      <i class="fa fa-pagelines" style="color: green"></i>
-      <i class="fa fa-pagelines" style="color: lightgray"></i>
-      <i class="fa fa-pagelines" style="color: lightgray"></i>
-    <% elsif house.epis == 3 %>
-      <i class="fa fa-pagelines" style="color: green"></i>
-      <i class="fa fa-pagelines" style="color: green"></i>
-      <i class="fa fa-pagelines" style="color: green"></i>
-      <i class="fa fa-pagelines" style="color: lightgray"></i>
-    <% elsif house.epis == 4 %>
-      <i class="fa fa-pagelines" style="color: green"></i>
-      <i class="fa fa-pagelines" style="color: green"></i>
-      <i class="fa fa-pagelines" style="color: green"></i>
-      <i class="fa fa-pagelines" style="color: green"></i>
-    <% end %>
-  <% end %>
+<div class="container">
+
+  <div class="flexbox">
+
+    <div>
+
+      <h1>Domaine de l’Aube des Temps : Détente et Nature</h1>
+
+      <p>Entre Narbonne et Carcassonne, à Raissac d’Aude, au confluent de l’Aude et de l’Orbieu, le domaine joliment nommé «l’Aube des temps» produit une gamme de vins qui chantent au palais, parfaits pour la convivialité des vacances.<br>
+      Les vacances et la convivialité sont devenus le principal parti pris du  domaine et naturellement nous avons créé 5 gîtes d’exception qui inspirent le calme et l’appel au repos. <br>
+      Avec des équipements dignes des plus grands complexes hôteliers, le domaine a su développer une clientèle de vacanciers, qui n’hésitent plus à réserver pour l’année suivante.</p>
+    </div>
+
+    <div>
+      <%= cl_image_tag("P8060177_fhkvp2.jpg") %>
+    </div>
+
+  </div>
+
+  <h2>Nos gîtes</h2>
+
+  <div class="show-gites">
+
+    <div class="row">
+
+      <% @houses.each do |house|  %>
+
+        <!-- <div class="col-xs-6 nopadding">
+          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://kitt.lewagon.com/placeholder/cities/shanghai');">
+            <div class="card-category"><%# render 'epis', house: house %></div>
+            <div class="card-description">
+              <h2><%#  house.name %></h2>
+            </div>
+            <%# link_to "", house_path(house), class: "card-link" %>
+          </div>
+        </div> -->
+
+        <div class="col-xs-6 nopadding">
+          <div class="hovereffect">
+            <img class="img-responsive" src="https://kitt.lewagon.com/placeholder/cities/shanghai" alt="">
+            <div class="overlay">
+              <h2><%= house.name %></h2>
+              <div class="epis"> <%= render 'epis', house: house %> </div>
+              <p>Capacité: <%= house.capacity %></p>
+              <%= link_to "", house_path(house), class: "cardhover-link" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+
+  </div>
+
+  <div class="contact flexbox">
+
+    <div class="contact-info">
+      Domaine de l’Aube des temps<br>
+      1 domaine de saint martin<br>
+      11200 Raissac d’Aude<br>
+      France<br>
+
+      Phone : 04 68 43 83 54<br>
+      Mobile : 06 10 95 78 30<br>
+      domaine@aubedestemps.fr
+    </div>
+
+    <div id="map" style="width: 100%; height: 300px;"></div>
+
+
+
+  </div>
+
 </div>
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    var handler = Gmaps.build('Google');
+    handler.buildMap({ internal: { id: 'map' } }, function() {
+      markers = handler.addMarkers({lat:43.235, lng: 2.893});
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+    });
+  <% end %>
+<% end %>
+
+
+
+
+
+
+
 
 

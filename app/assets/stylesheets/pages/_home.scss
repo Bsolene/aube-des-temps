@@ -1,1 +1,13 @@
 // Specific CSS for your home-page
+.flexbox {
+  display: flex;
+}
+
+.contact-info {
+  margin-right: 150px;
+}
+
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}

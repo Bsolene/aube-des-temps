@@ -1,5 +1,8 @@
 {
   "name": "aube-des-temps",
   "private": true,
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^3.8.1"
+  }
 }

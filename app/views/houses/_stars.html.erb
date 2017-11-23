@@ -1,0 +1,31 @@
+<% if review.rating == 1 %>
+  <i class="fa fa-star" style="color: yellow"></i>
+  <i class="fa fa-star" style="color: lightgray"></i>
+  <i class="fa fa-star" style="color: lightgray"></i>
+  <i class="fa fa-star" style="color: lightgray"></i>
+  <i class="fa fa-star" style="color: lightgray"></i>
+<% elsif review.rating == 2 %>
+  <i class="fa fa-star" style="color: yellow"></i>
+  <i class="fa fa-star" style="color: yellow"></i>
+  <i class="fa fa-star" style="color: lightgray"></i>
+  <i class="fa fa-star" style="color: lightgray"></i>
+  <i class="fa fa-star" style="color: lightgray"></i>
+<% elsif review.rating == 3 %>
+  <i class="fa fa-star" style="color: yellow"></i>
+  <i class="fa fa-star" style="color: yellow"></i>
+  <i class="fa fa-star" style="color: yellow"></i>
+  <i class="fa fa-star" style="color: lightgray"></i>
+  <i class="fa fa-star" style="color: lightgray"></i>
+<% elsif review.rating == 4 %>
+  <i class="fa fa-star" style="color: yellow"></i>
+  <i class="fa fa-star" style="color: yellow"></i>
+  <i class="fa fa-star" style="color: yellow"></i>
+  <i class="fa fa-star" style="color: yellow"></i>
+  <i class="fa fa-star" style="color: yellow"></i>
+  <% elsif review.rating == 5 %>
+  <i class="fa fa-star" style="color: yellow"></i>
+  <i class="fa fa-star" style="color: yellow"></i>
+  <i class="fa fa-star" style="color: yellow"></i>
+  <i class="fa fa-star" style="color: yellow"></i>
+  <i class="fa fa-star" style="color: yellow"></i>
+<% end %>

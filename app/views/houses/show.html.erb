@@ -2,10 +2,30 @@
 <h1>SHOW</h1>
 
 
-<%= simple_form_for [@house, @reservation] do |f| %>
-  <%= f.input :check_in, as: :date %>
-  <%= f.input :check_out, as: :date %>
+<%# simple_form_for [@house, @reservation] do |f| %>
+  <%# f.input :check_in, as: :date %>
+  <%# f.input :check_out, as: :date %>
  <!--  <input class="datetimepicker" type="hidden" name="reservation[check_in]">
   <input class="datetimepicker" type="hidden" name="reservation[check_out]"> -->
-  <%= f.button :submit, class: 'btn-green' %>
+  <%# f.button :submit, class: 'btn-green' %>
+<%# end %>
+
+<!-- REVIEW -->
+
+<h2>Reviews - <%= render 'stars_average', house: @house %></h2>
+<% if !@reviews.nil? %>
+  <% @reviews.each do |review| %>
+    <%= review.name %>
+    <%= review.content %>
+    <%= render 'stars', review: review %>
+  <% end %>
+<% else %>
+<p>Soyez le premier à mettre un commentaire !</p>
+<% end %>
+
+<%= simple_form_for [@house, @review] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :content %>
+  <%= f.collection_radio_buttons :rating, [[1], [2], [3], [4], [5]], :first, :last %>
+  <%= f.button :submit %>
 <% end %>

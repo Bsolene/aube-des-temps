@@ -9,6 +9,8 @@ before_action :set_house, only: [:show]
 
   def show
     @reservation = Reservation.new
+    @reviews = Review.all
+    @review = Review.new
   end
 
   private
