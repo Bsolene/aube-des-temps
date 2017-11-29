@@ -16,6 +16,14 @@
 
     <div class="col-6">
 
+      <div class="d-flex flex-row">
+        <a href="#1" class="p-2">Equipements</a>
+        <a href="#2" class="p-2">Prix</a>
+        <a href="#3" class="p-2">Espace commun</a>
+        <a href="#4" class="p-2">Règlement intérieur</a>
+        <a href="#5" class="p-2">Plan</a>
+      </div>
+
       <div class="infos-gite">
         <p><%= @house.description %></p>
 
@@ -39,7 +47,7 @@
       </div>
 
       <hr>
-      <h4>Equipements</h4>
+      <h4 id="1">Equipements</h4>
 
       <div class="equipments row">
         <% @house.equipment.attributes.each do |name, value| %>
@@ -60,11 +68,11 @@
 
       <hr>
 
-      <h4>Prix</h4>
+      <h4 id="2">Prix</h4>
 
       <hr>
 
-      <h4>Espace communs</h4>
+      <h4 id="3">Espace communs</h4>
 
       <p>Tous les gîtes du domaine bénéficient d’un accès illimité aux espaces et équipements communs (pendant les heures d’ouverture).</p>
       <p>A consommer sans modération.</p>
@@ -97,7 +105,7 @@
 
       <hr>
 
-      <h4>Règlement intérieur</h4>
+      <h4 id="4">Règlement intérieur</h4>
       <hr>
 
     </div>
@@ -149,21 +157,7 @@
 
   <div class="review-form">
     <h4>Laissez votre avis !</h4>
-    <%= simple_form_for [@house, @review] do |f| %>
-      <%= f.input :name, :label => "Nom" %>
-      <%= f.input :content, :label => "Avis" %>
-      <%# f.collection_radio_buttons :rating, [[1], [2], [3], [4], [5]], :first, :last %>
-      <div class="star-rating">
-        <fieldset>
-          <input type="radio" id="star5" name="review[rating]" value="5" /><label for="star5" title="Outstanding">5 stars</label>
-          <input type="radio" id="star4" name="review[rating]" value="4" /><label for="star4" title="Very Good">4 stars</label>
-          <input type="radio" id="star3" name="review[rating]" value="3" /><label for="star3" title="Good">3 stars</label>
-          <input type="radio" id="star2" name="review[rating]" value="2" /><label for="star2" title="Poor">2 stars</label>
-          <input type="radio" id="star1" name="review[rating]" value="1" /><label for="star1" title="Very Poor">1 star</label>
-        </fieldset>
-      </div>
-      <%= f.button :submit %>
-    <% end %>
+    <%= render 'review_form', house: @house, review: @review %>
 
   </div>
 </div>

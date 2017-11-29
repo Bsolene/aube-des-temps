@@ -1,0 +1,22 @@
+<%= simple_form_for [@house, @review] do |f| %>
+      <%# f.input :name, :label => "Nom" %>
+      <%# f.input :content, :label => "Avis" %>
+      <%# f.collection_radio_buttons :rating, [[1], [2], [3], [4], [5]], :first, :last %>
+      <input type="text" name="review[name]" class="question" id="nme" required autocomplete="off" />
+      <label for="nme"><span>Quel est votre nom?</span></label>
+      <textarea name="review[content]" rows="2" class="question" id="msg" required autocomplete="off"></textarea>
+      <label for="msg"><span>Quel est votre avis?</span></label>
+
+      <div class="star-rating">
+        <fieldset>
+          <input type="radio" id="star5" name="review[rating]" value="5" /><label for="star5" title="Outstanding">5 stars</label>
+          <input type="radio" id="star4" name="review[rating]" value="4" /><label for="star4" title="Very Good">4 stars</label>
+          <input type="radio" id="star3" name="review[rating]" value="3" /><label for="star3" title="Good">3 stars</label>
+          <input type="radio" id="star2" name="review[rating]" value="2" /><label for="star2" title="Poor">2 stars</label>
+          <input type="radio" id="star1" name="review[rating]" value="1" /><label for="star1" title="Very Poor">1 star</label>
+        </fieldset>
+      </div>
+      <%= f.button :submit, class: "btn btn-danger" %>
+    <% end %>
+
+
