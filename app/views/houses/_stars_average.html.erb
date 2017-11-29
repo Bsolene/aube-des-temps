@@ -1,31 +1,37 @@
-<% if house.average.between?(1, 2)   %>
+<% if house.average.between?(1, 1.9)   %>
+  -
   <i class="fa fa-star" style="color: yellow"></i>
   <i class="fa fa-star" style="color: lightgray"></i>
   <i class="fa fa-star" style="color: lightgray"></i>
   <i class="fa fa-star" style="color: lightgray"></i>
   <i class="fa fa-star" style="color: lightgray"></i>
-<% elsif house.average.between?(2, 3)  %>
+<% elsif house.average.between?(2, 2.9)  %>
+  -
   <i class="fa fa-star" style="color: yellow"></i>
   <i class="fa fa-star" style="color: yellow"></i>
   <i class="fa fa-star" style="color: lightgray"></i>
   <i class="fa fa-star" style="color: lightgray"></i>
   <i class="fa fa-star" style="color: lightgray"></i>
-<% elsif house.average.between?(3, 4)  %>
+<% elsif house.average.between?(3, 3.9)  %>
+  -
   <i class="fa fa-star" style="color: yellow"></i>
   <i class="fa fa-star" style="color: yellow"></i>
   <i class="fa fa-star" style="color: yellow"></i>
   <i class="fa fa-star" style="color: lightgray"></i>
   <i class="fa fa-star" style="color: lightgray"></i>
-<% elsif house.average.between?(4, 5)  %>
+<% elsif house.average.between?(4, 4.9)  %>
+  -
   <i class="fa fa-star" style="color: yellow"></i>
   <i class="fa fa-star" style="color: yellow"></i>
   <i class="fa fa-star" style="color: yellow"></i>
   <i class="fa fa-star" style="color: yellow"></i>
   <i class="fa fa-star" style="color: yellow"></i>
-  <% elsif house.average == 5 %>
+<% elsif house.average == 5 %>
+  -
   <i class="fa fa-star" style="color: yellow"></i>
   <i class="fa fa-star" style="color: yellow"></i>
   <i class="fa fa-star" style="color: yellow"></i>
   <i class="fa fa-star" style="color: yellow"></i>
   <i class="fa fa-star" style="color: yellow"></i>
 <% end %>
+

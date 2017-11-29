@@ -2,9 +2,12 @@ source 'https://rubygems.org'
 ruby '2.4.1'
 
 gem 'devise'
+gem 'pundit'
 gem 'figaro'
 gem 'cloudinary'
 gem 'carrierwave', '~> 1.2'
+gem 'icalendar'
+gem "simple_calendar", "~> 2.0"
 
 gem 'jbuilder', '~> 2.0'
 gem 'pg'
@@ -13,7 +16,8 @@ gem 'rails', '5.1.4'
 gem 'redis'
 
 gem 'autoprefixer-rails'
-gem 'bootstrap-sass'
+gem 'bootstrap', '~> 4.0.0.beta2'
+# gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'jquery-rails'
 gem 'sass-rails'

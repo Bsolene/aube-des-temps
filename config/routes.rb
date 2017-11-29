@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   root to: 'houses#index'
 
-    resources :houses, only: [ :index, :show ] do
+    resources :houses do
       resources :reservations, only: [:create]
       resources :reviews, only: [:create]
     end

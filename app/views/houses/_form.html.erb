@@ -1,0 +1,35 @@
+<%= simple_form_for @house do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :price, as: :integer %>
+  <%= f.input :room, as: :integer %>
+  <%= f.input :epis, collection: 0..4 %>
+  <%= f.input :capacity, as: :integer %>
+  <%= f.input :single_bed, as: :integer %>
+  <%= f.input :double_bed, as: :integer %>
+  <%= f.input :bathroom, as: :integer %>
+  <%= f.input :calendar_url %>
+  <%= f.file_field :photos, multiple: true %>
+  <%= f.fields_for :equipment do |u| %>
+      <%= u.input :climatisation, :input_html => { :checked => false } %>
+      <%= u.input :wifi, :input_html => { :checked => false }  %>
+      <%= u.input :lave_linge, :input_html => { :checked => false } %>
+      <%= u.input :sèche_linge, :input_html => { :checked => false } %>
+      <%= u.input :étendoir, :input_html => { :checked => false } %>
+      <%= u.input :lave_vaisselle, :input_html => { :checked => false } %>
+      <%= u.input :four, :input_html => { :checked => false } %>
+      <%= u.input :mixeur, :input_html => { :checked => false } %>
+      <%= u.input :vitrocéramique, :input_html => { :checked => false } %>
+      <%= u.input :cafetière_nespresso, :input_html => { :checked => false } %>
+      <%= u.input :bouilloire, :input_html => { :checked => false } %>
+      <%= u.input :grille_pain, :input_html => { :checked => false } %>
+      <%= u.input :aspirateur, :input_html => { :checked => false } %>
+      <%= u.input :presse_agrume, :input_html => { :checked => false } %>
+      <%= u.input :linge, :input_html => { :checked => false } %>
+      <%= u.input :drap, :input_html => { :checked => false } %>
+      <%= u.input :réfrigerateur, :input_html => { :checked => false } %>
+      <%= u.input :téléviseur, :input_html => { :checked => false } %>
+      <%= u.input :fer_à_repasser,:input_html => { :checked => false } %>
+   <% end %>
+  <%= f.button :submit %>
+<% end %>

@@ -12,10 +12,10 @@ CSV.foreach("db/gites.csv", :encoding => 'windows-1251:utf-8') do |row|
 end
 
 puts "Adding photos..."
-  bouteillan = House.find(name: "La Bouteillan")
-  bouteillan.photo_urls = urls_bouteillan
-  lucque = House.find(name: "La Lucque")
-  lucque.photo_urls = urls_lucque
+  # bouteillan = House.find(name: "La Bouteillan")
+  # bouteillan.photo_urls = urls_bouteillan
+  # lucque = House.find(name: "La Lucque")
+  # lucque.photo_urls = urls_lucque
 
 puts 'Finished!'
 

@@ -10,10 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171123160648) do
+ActiveRecord::Schema.define(version: 20171128140426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "equipment", force: :cascade do |t|
+    t.bigint "house_id"
+    t.boolean "climatisation", default: false
+    t.boolean "wifi", default: false
+    t.boolean "lave_linge", default: false
+    t.boolean "sèche_linge", default: false
+    t.boolean "étendoir", default: false
+    t.boolean "lave_vaisselle", default: false
+    t.boolean "four", default: false
+    t.boolean "mixeur", default: false
+    t.boolean "vitrocéramique", default: false
+    t.boolean "cafetière_nespresso", default: false
+    t.boolean "bouilloire", default: false
+    t.boolean "grille_pain", default: false
+    t.boolean "aspirateur", default: false
+    t.boolean "presse_agrume", default: false
+    t.boolean "linge", default: false
+    t.boolean "drap", default: false
+    t.boolean "réfrigerateur", default: false
+    t.boolean "téléviseur", default: false
+    t.boolean "fer_à_repasser", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["house_id"], name: "index_equipment_on_house_id"
+  end
 
   create_table "houses", force: :cascade do |t|
     t.string "name"
@@ -22,22 +48,22 @@ ActiveRecord::Schema.define(version: 20171123160648) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "photo"
-    t.integer "capacity"
-    t.integer "room"
-    t.integer "single_bed"
-    t.integer "double_bed"
+    t.integer "capacity", default: 0
+    t.integer "room", default: 0
+    t.integer "single_bed", default: 0
+    t.integer "double_bed", default: 0
+    t.integer "bathroom", default: 0
+    t.string "photos", default: [], array: true
+    t.string "calendar_url"
   end
 
   create_table "reservations", force: :cascade do |t|
     t.bigint "house_id"
-    t.bigint "user_id"
-    t.date "check_in", null: false
-    t.date "check_out", null: false
+    t.date "start_time", null: false
+    t.date "end_time", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["house_id"], name: "index_reservations_on_house_id"
-    t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -63,11 +89,12 @@ ActiveRecord::Schema.define(version: 20171123160648) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "admin"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "equipment", "houses"
   add_foreign_key "reservations", "houses"
-  add_foreign_key "reservations", "users"
   add_foreign_key "reviews", "houses"
 end

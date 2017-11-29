@@ -2,12 +2,29 @@
 .flexbox {
   display: flex;
 }
-
+.contact-box{
+background: linear-gradient(to top, #eacda3, #d6ae7b);
+}
 .contact-info {
-  margin-right: 150px;
+  border-left: 2px solid;
+  padding-left: 15px;
+  margin-left: 10vw;
+  margin-top: 10vh;
+}
+.contact{
+  margin: 15px 10px;
 }
 
 .nopadding {
    padding: 0 !important;
    margin: 0 !important;
+}
+.flexbox-space{
+  display: flex;
+  justify-content: space-between;
+}
+
+.flexbox-column{
+  display: flex;
+  flex-direction: column;
 }

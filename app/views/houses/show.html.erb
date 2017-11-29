@@ -1,5 +1,121 @@
 
-<h1>SHOW</h1>
+<a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+
+<h2 class="margin-left"><%= @house.name %></h2>
+
+<% @house.photos.each do |photo| %>
+  <%= cl_image_tag photo.url, height: 300, width: 400, crop: :fill %>
+<% end %>
+
+<!-- INFOS -->
+
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-6">
+
+      <div class="infos-gite">
+        <p><%= @house.description %></p>
+
+        <div class="flexbox-space">
+
+          <div class="icone">
+            <i class="fa fa-users"></i><%= pluralize @house.capacity, 'personne' %>
+          </div>
+          <div class="icone">
+            <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjMycHgiIGhlaWdodD0iMzJweCIgdmlld0JveD0iMCAwIDQ5Mi41IDQ5Mi41IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0OTIuNSA0OTIuNTsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8Zz4KCTxwYXRoIGQ9Ik0xODQuNjQ2LDB2MjEuNzJIOTkuNzA0djQzMy4zNThoMzEuNDAzVjUzLjEyM2g1My41MzlWNDkyLjVsMjA4LjE1LTM3LjQyMnYtNjEuMjM1VjM3LjVMMTg0LjY0NiwweiBNMjIyLjkzOCwyNjMuMTI5ICAgYy02Ljk5NywwLTEyLjY3LTcuMzgxLTEyLjY3LTE2LjQ4NmMwLTkuMTA0LDUuNjczLTE2LjQ4NSwxMi42Ny0xNi40ODVzMTIuNjcsNy4zODEsMTIuNjcsMTYuNDg1ICAgQzIzNS42MDgsMjU1Ljc0OCwyMjkuOTM1LDI2My4xMjksMjIyLjkzOCwyNjMuMTI5eiIgZmlsbD0iIzAwMDAwMCIvPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" /><%= pluralize @house.room, 'chambre' %>
+          </div>
+          <div class="icone">
+            <i class="fa fa-bed"></i><%= pluralize @house.bed, 'lit' %>
+          </div>
+          <div class="icone">
+            <i class="fa fa-bath"></i><%= pluralize @house.bathroom, 'salle' %> de bains
+          </div>
+
+        </div>
+
+      </div>
+
+      <hr>
+      <h4>Equipements</h4>
+
+      <div class="equipments row">
+        <% @house.equipment.attributes.each do |name, value| %>
+          <% unless name == 'id' || name == 'house_id' || name == 'created_at' || name == 'updated_at' %>
+            <% name = name.gsub('_', ' ').capitalize %>
+            <% if value == true %>
+              <div class="col-12 col-sm-6 col-md-6">
+                <div class="equipment"><%= name %></div>
+              </div>
+            <% else %>
+              <div class="col-12 col-sm-6 col-md-6">
+                <div class="equipment false"><%= name %></div>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <hr>
+
+      <h4>Prix</h4>
+
+      <hr>
+
+      <h4>Espace communs</h4>
+
+      <p>Tous les gîtes du domaine bénéficient d’un accès illimité aux espaces et équipements communs (pendant les heures d’ouverture).</p>
+      <p>A consommer sans modération.</p>
+
+      <h5>Salle de détente  avec :</h5>
+
+      <ul class="list-unstyled">
+        <li>Bibliothèque enfant</li>
+        <li>Jeux de sociétés</li>
+        <li>TV</li>
+        <li>Lecteur dvd</li>
+        <li>Billard</li>
+        <li>Piscine intérieure</li>
+        <li>SPA</li>
+        <li>Hammam</li>
+        <li>Sauna</li>
+        <li>Equipement de sport (vélos elliptiques, tapis de marche, banc de musculation, vélos)</li>
+        <li>Salle de massage  (Prestation en supplément sur demande et selon disponibilité)</li>
+      </ul>
+
+      <h5>Equipements extérieurs :</h5>
+
+      <ul class="list-unstyled">
+        <li>Vélos (toutes tailles) à disposition</li>
+        <li>Espace pétanque</li>
+        <li>Tennis avec raquettes et balles</li>
+        <li>Table Ping Pong avec raquettes et balles</li>
+        <li>Piscine extérieure</li>
+      </ul>
+
+      <hr>
+
+      <h4>Règlement intérieur</h4>
+      <hr>
+
+    </div>
+
+    <div class="col-6">
+
+      <div class="reservation-box d-flex flex-column align-items-center">
+        <div>Disponibilité</div>
+        <div class="calendar-box">
+          <%= render 'calendar', house: @house, reservations: @reservations %>
+        </div>
+        <a href="https://admin.xotelia.com/BS/aube-des-temps/fr/" class="btn btn-danger">Réserver</a>
+      </div>
+    </div>
+
+  </div>
+
+</div>
 
 
 <%# simple_form_for [@house, @reservation] do |f| %>
@@ -12,20 +128,44 @@
 
 <!-- REVIEW -->
 
-<h2>Reviews - <%= render 'stars_average', house: @house %></h2>
-<% if !@reviews.nil? %>
-  <% @reviews.each do |review| %>
-    <%= review.name %>
-    <%= review.content %>
-    <%= render 'stars', review: review %>
-  <% end %>
-<% else %>
-<p>Soyez le premier à mettre un commentaire !</p>
-<% end %>
+<h2 class="text-center">Avis (<%= @house.reviews.count %>)<%= render 'stars_average', house: @house %></h2>
 
-<%= simple_form_for [@house, @review] do |f| %>
-  <%= f.input :name %>
-  <%= f.input :content %>
-  <%= f.collection_radio_buttons :rating, [[1], [2], [3], [4], [5]], :first, :last %>
-  <%= f.button :submit %>
-<% end %>
+<div class="flexbox">
+  <div class="reviews-box">
+      <% if !@house.reviews.nil? %>
+        <% @house.reviews.each do |review| %>
+          <div class="review-list">
+            <div class="flexbox">
+              <%= render 'stars', review: review %><h5><%= review.name %> </h5>
+            </div>
+            <p><%= review.content %></p>
+          </div>
+        <% end %>
+      <% else %>
+        <p>Soyez le premier à mettre un commentaire !</p>
+      <% end %>
+
+  </div>
+
+  <div class="review-form">
+    <h4>Laissez votre avis !</h4>
+    <%= simple_form_for [@house, @review] do |f| %>
+      <%= f.input :name, :label => "Nom" %>
+      <%= f.input :content, :label => "Avis" %>
+      <%# f.collection_radio_buttons :rating, [[1], [2], [3], [4], [5]], :first, :last %>
+      <div class="star-rating">
+        <fieldset>
+          <input type="radio" id="star5" name="review[rating]" value="5" /><label for="star5" title="Outstanding">5 stars</label>
+          <input type="radio" id="star4" name="review[rating]" value="4" /><label for="star4" title="Very Good">4 stars</label>
+          <input type="radio" id="star3" name="review[rating]" value="3" /><label for="star3" title="Good">3 stars</label>
+          <input type="radio" id="star2" name="review[rating]" value="2" /><label for="star2" title="Poor">2 stars</label>
+          <input type="radio" id="star1" name="review[rating]" value="1" /><label for="star1" title="Very Poor">1 star</label>
+        </fieldset>
+      </div>
+      <%= f.button :submit %>
+    <% end %>
+
+  </div>
+</div>
+
+<%= link_to 'edit', edit_house_path(@house) %>
